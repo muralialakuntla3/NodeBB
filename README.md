@@ -1,6 +1,6 @@
 # NodeBB - Connect VM deployment
 
-For nodebb setup visit below link
+For nodebb setup visit below
 Link: https://docs.nodebb.org/installing/os/ubuntu/
 ## Steps to setup NodeBB:
 1. Server setup
