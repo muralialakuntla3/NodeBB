@@ -1,83 +1,115 @@
-# ![NodeBB](public/images/sm-card.png)
+# NodeBB - Connect VM deployment
 
-[![Workflow](https://github.com/NodeBB/NodeBB/actions/workflows/test.yaml/badge.svg)](https://github.com/NodeBB/NodeBB/actions/workflows/test.yaml)
-[![Coverage Status](https://coveralls.io/repos/github/NodeBB/NodeBB/badge.svg?branch=master)](https://coveralls.io/github/NodeBB/NodeBB?branch=master)
-[![Code Climate](https://codeclimate.com/github/NodeBB/NodeBB/badges/gpa.svg)](https://codeclimate.com/github/NodeBB/NodeBB)
-[![](https://dcbadge.vercel.app/api/server/p6YKPXu7er?style=flat)](https://discord.gg/p6YKPXu7er)
+For nodebb setup visit below link
+Link: https://docs.nodebb.org/installing/os/ubuntu/
+## Steps to setup NodeBB:
+1. Server setup
+2. Installing Node.js
+3. Installing MongoDB
+4. Configure MongoDB
+5. Installing NodeBB
+6. Access application
 
-[**NodeBB Forum Software**](https://nodebb.org) is powered by Node.js and supports either Redis, MongoDB, or a PostgreSQL database. It utilizes web sockets for instant interactions and real-time notifications. NodeBB takes the best of the modern web: real-time streaming discussions, mobile responsiveness, and rich RESTful read/write APIs, while staying true to the original bulletin board/forum format &rarr; categorical hierarchies, local user accounts, and asynchronous messaging.
+## 1. Server setup
+- Os : ubuntu 20.0
+- Ports: 22, 80, 4567, 27017
+## 2. Installing Node.js
+- Repo: https://deb.nodesource.com/
+### node installation
+- sudo apt-get update && sudo apt-get install -y ca-certificates curl gnupg
+- curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+- NODE_MAJOR=20
+- echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+- sudo apt-get install nodejs -y
+- Node -v
+- Node version should be above 12 if not follow the steps below
+- Install node version manager (nvm) for installing node v:18
+### install nvm:
+- curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+- Restart the system by logout and login
+- source ~/.bashrc
+- nvm install 18
+- nvm use 18 -----for setting node v.18 as default
+- sudo apt install npm -y
 
-NodeBB by itself contains a "common core" of basic functionality, while additional functionality and integrations are enabled through the use of third-party plugins.
+## 3. Installing MongoDB
+- wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add 
+- echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+- sudo apt-get update
+- sudo apt-get install -y mongodb-org
 
-### [Try it now](//try.nodebb.org) | [Documentation](//docs.nodebb.org)
+- mongod --version
+- sudo systemctl start mongod
+- Error: sudo systemctl daemon-reload
+- sudo systemctl status mongod
+- Sudo systemctl enable mongod
 
-## Screenshots
+## 4. Configure MongoDB
+### Enter into mongodb:
+- mongo
+    use admin
+        db.createUser( { user: "admin", pwd: "password", roles: [ { role: "root", db: "admin" } ] } )
+### now setup your nodebb database
+        use nodebb
+        db.createUser( { user: "nodebb", pwd: "amkamk3", roles: [ { role: "readWrite", db: "nodebb" }, { role: "clusterMonitor", db: "admin" } ] } )
+        quit()
 
-NodeBB's theming engine is highly flexible and does not restrict your design choices. Check out some themed installs in these screenshots below:
+### Enable database authorization:
+- sudo vi /etc/mongod.conf 
+    security:
+         authorization: enabled
 
-[![](http://i.imgur.com/VCoOFyqb.png)](http://i.imgur.com/VCoOFyq.png)
-[![](http://i.imgur.com/FLOUuIqb.png)](http://i.imgur.com/FLOUuIq.png)
-[![](http://i.imgur.com/Ud1LrfIb.png)](http://i.imgur.com/Ud1LrfI.png)
-[![](http://i.imgur.com/h6yZ66sb.png)](http://i.imgur.com/h6yZ66s.png)
-[![](http://i.imgur.com/o90kVPib.png)](http://i.imgur.com/o90kVPi.png)
-[![](http://i.imgur.com/AaRRrU2b.png)](http://i.imgur.com/AaRRrU2.png)
-[![](http://i.imgur.com/LmHtPhob.png)](http://i.imgur.com/LmHtPho.png)
-[![](http://i.imgur.com/paiJPJkb.jpg)](http://i.imgur.com/paiJPJk.jpg)
+### Restart MongoDB and verify:
 
-Our minimalist "Harmony" theme gets you going right away, no coding experience required.
+- sudo systemctl restart mongod
+- mongo -u admin -p password --authenticationDatabase=admin
+- exit
 
-![Rendering of a NodeBB install on desktop and mobile devices](https://user-images.githubusercontent.com/923011/228570420-2a4db745-b20d-474a-a571-1b59259508ef.png)
+## 5. Installing & Starting NodeBB
+- mgit clone -b v3.x https://github.com/NodeBB/NodeBB.git nodebb
+- cd nodebb
+- ./nodebb setup
+- Give data base credentials 
+- Register user in it
+- ./nodebb start
 
-## How can I follow along/contribute?
+## 6. Access application
+- Access application using ip-addr:4567
+- Login with your credentials which are previously given
+- You can register new one from console
 
-* If you are a developer, feel free to check out the source and submit pull requests. We also have a wide array of [plugins](http://community.nodebb.org/category/7/nodebb-plugins) which would be a great starting point for learning the codebase.
-* If you are a designer, [NodeBB needs themes](http://community.nodebb.org/category/10/nodebb-themes)! NodeBB's theming system allows extension of the base templates as well as styling via SCSS or CSS. NodeBB's base theme utilizes [Bootstrap 5](http://getbootstrap.com/) as a frontend toolkit.
-* If you know languages other than English you can help us translate NodeBB. We use [Transifex](https://explore.transifex.com/nodebb/nodebb/) for internationalization.
-* Please don't forget to **like**, **follow**, and **star our repo**! Join our growing [community](http://community.nodebb.org) to keep up to date with the latest NodeBB development.
-
-## Requirements
-
-NodeBB requires the following software to be installed:
-
-* A version of Node.js at least 16 or greater ([installation/upgrade instructions](https://github.com/nodesource/distributions))
-* MongoDB, version 3.6 or greater **or** Redis, version 2.8.9 or greater
-* If you are using [clustering](https://docs.nodebb.org/configuring/scaling/) you need Redis installed and configured.
-* nginx, version 1.3.13 or greater (**only if** intending to use nginx to proxy requests to a NodeBB)
-
-## Installation
-
-[Please refer to platform-specific installation documentation](https://docs.nodebb.org/installing/os)
-
-## Securing NodeBB
-
-It is important to ensure that your NodeBB and database servers are secured. Bear these points in mind:
-
-1. While some distributions set up Redis with a more restrictive configuration, Redis by default listens to all interfaces, which is especially dangerous when a server is open to the public. Some suggestions:
-    * Set `bind_address` to `127.0.0.1` so as to restrict access  to the local machine only
-    * Use `requirepass` to secure Redis behind a password (preferably a long one)
-    * Familiarise yourself with [Redis Security](http://redis.io/topics/security)
-2. Use `iptables` to secure your server from unintended open ports. In Ubuntu, `ufw` provides a friendlier interface to working with `iptables`.
-    * e.g. If your NodeBB is proxied, no ports should be open except 80 (and possibly 22, for SSH access)
-
-## Upgrading NodeBB
-
-Detailed upgrade instructions are listed in [Upgrading NodeBB](https://docs.nodebb.org/configuring/upgrade/)
-
-## License
-
-NodeBB is licensed under the **GNU General Public License v3 (GPL-3)** (http://www.gnu.org/copyleft/gpl.html).
-
-Interested in a sublicense agreement for use of NodeBB in a non-free/restrictive environment? Contact us at sales@nodebb.org.
-
-## More Information/Links
-
-* [Demo](https://try.nodebb.org)
-* [Developer Community](http://community.nodebb.org)
-* [Documentation & Installation Instructions](https://docs.nodebb.org)
-* [Help translate NodeBB](https://explore.transifex.com/nodebb/nodebb/)
-* [NodeBB Blog](https://nodebb.org/blog)
-* [Premium Hosting for NodeBB](https://www.nodebb.org/ "NodeBB")
-* Unofficial IRC community &ndash; channel `#nodebb` on Libera.chat
-* [Follow us on Twitter](http://www.twitter.com/NodeBB/ "NodeBB Twitter")
-* [Like us on Facebook](http://www.facebook.com/NodeBB/ "NodeBB Facebook")
+## Commands history:
+### Node installation:
+    sudo apt-get update
+    curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+    sudo apt-get update && sudo apt-get install -y ca-certificates curl gnupg
+    sudo apt install nodejs -y
+    Nvm (node version manager) installation:
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+    logout
+    sudo npm install npm -y
+    sudo apt install npm -y
+    npm -v
+    node -v
+    nvm use 18
+    node -v
+    npm -v
+### Mongodb installation:
+    wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add
+    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+    sudo apt-get update
+    sudo apt-get install -y mongodb-org
+    mongod --version
+    sudo systemctl start mongod
+    sudo systemctl status mongod
+    Mongodb configuration:
+    mongo
+    sudo vi /etc/mongod.conf
+    sudo systemctl restart mongod
+    mongo -u admin -p password --authenticationDatabase=admin
+### Nodebb installation:
+    git clone -b v3.x https://github.com/NodeBB/NodeBB.git nodebb
+    cd nodebb/
+    ./nodebb setup
+    ./nodebb start
 
