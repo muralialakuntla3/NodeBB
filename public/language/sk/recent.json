@@ -1,0 +1,11 @@
+{
+    "title": "Nedávne",
+    "day": "Deň",
+    "week": "Týždeň",
+    "month": "Mesiac",
+    "year": "Rok",
+    "alltime": "Vždy",
+    "no_recent_topics": "Neboli nájdené žiadne nové témy.",
+    "no_popular_topics": "Neexistujú žiadne populárne témy.",
+    "load-new-posts": "Load new posts"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "ล่าสุด",
+    "day": "วัน",
+    "week": "สัปดาห์",
+    "month": "เดือน",
+    "year": "ปี",
+    "alltime": "ตลอดกาล",
+    "no_recent_topics": "ไม่มีกระทู้ล่าสุด",
+    "no_popular_topics": "ไม่มีกระทู้ฮิต",
+    "load-new-posts": "Load new posts"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Güncel",
+    "day": "Gün",
+    "week": "Hafta",
+    "month": "Ay",
+    "year": "Yıl",
+    "alltime": "Hepsi",
+    "no_recent_topics": "Güncel konu yok.",
+    "no_popular_topics": "Popüler konu yok.",
+    "load-new-posts": "Yeni iletileri yükle"
+}

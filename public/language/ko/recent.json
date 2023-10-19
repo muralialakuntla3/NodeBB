@@ -1,0 +1,11 @@
+{
+    "title": "최근",
+    "day": "일간",
+    "week": "주간",
+    "month": "월간",
+    "year": "연간",
+    "alltime": "전체",
+    "no_recent_topics": "최근 생성된 화제가 없습니다.",
+    "no_popular_topics": "인기 화제가 없습니다.",
+    "load-new-posts": "Load new posts"
+}

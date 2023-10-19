@@ -1,0 +1,11 @@
+{
+    "title": "Nedavno",
+    "day": "Dan",
+    "week": "Teden",
+    "month": "Mesec",
+    "year": "Leto",
+    "alltime": "Vse",
+    "no_recent_topics": "Ni nedavnih tem.",
+    "no_popular_topics": "Ni priljubljenih tem.",
+    "load-new-posts": "Load new posts"
+}

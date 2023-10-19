@@ -1,0 +1,11 @@
+{
+    "title": "Recentes",
+    "day": "Día",
+    "week": "Semana",
+    "month": "Mes",
+    "year": "Ano",
+    "alltime": "Dende o principio",
+    "no_recent_topics": "Non hai temas recentes",
+    "no_popular_topics": "Non hai temas populares",
+    "load-new-posts": "Load new posts"
+}

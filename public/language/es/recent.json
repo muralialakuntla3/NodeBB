@@ -1,0 +1,11 @@
+{
+    "title": "Reciente",
+    "day": "Día",
+    "week": "Semana",
+    "month": "Mes",
+    "year": "Año",
+    "alltime": "Siempre",
+    "no_recent_topics": "No hay publicaciones recientes.",
+    "no_popular_topics": "No hay publicaciones populares",
+    "load-new-posts": "Load new posts"
+}

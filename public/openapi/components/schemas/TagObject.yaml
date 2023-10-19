@@ -1,0 +1,18 @@
+TagObject:
+  type: object
+  properties:
+    value:
+      type: string
+      description: The tag name
+    score:
+      type: number
+      description: The number of topics containing this tag
+    class:
+      type: string
+      description: Class name that is applied to the to the tag html element
+    valueEscaped:
+      type: string
+      description: value escaped with validator.escape
+    valueEncoded:
+      type: string
+      description: value url encoded

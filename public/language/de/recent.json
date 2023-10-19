@@ -1,0 +1,11 @@
+{
+    "title": "Aktuell",
+    "day": "Tag",
+    "week": "Woche",
+    "month": "Monat",
+    "year": "Jahr",
+    "alltime": "Gesamter Zeitraum",
+    "no_recent_topics": "Es gibt keine aktuellen Themen.",
+    "no_popular_topics": "Es gibt keine beliebten Themen.",
+    "load-new-posts": "Neue Beiträge laden"
+}

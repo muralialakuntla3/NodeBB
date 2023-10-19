@@ -1,0 +1,11 @@
+{
+    "title": "Ostatnie",
+    "day": "Dzień",
+    "week": "Tydzień",
+    "month": "Miesiąc",
+    "year": "Rok",
+    "alltime": "Od początku",
+    "no_recent_topics": "Brak ostatnich tematów.",
+    "no_popular_topics": "Brak popularnych tematów.",
+    "load-new-posts": "Load new posts"
+}
