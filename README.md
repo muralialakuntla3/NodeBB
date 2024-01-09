@@ -48,10 +48,10 @@ Link: https://docs.nodebb.org/installing/os/ubuntu/
 ### Enter into mongodb:
 - mongo
     use admin
-        db.createUser( { user: "admin", pwd: "password", roles: [ { role: "root", db: "admin" } ] } )
+        db.createUser( { user: "admin", pwd: "admin123", roles: [ { role: "root", db: "admin" } ] } )
 ### now setup your nodebb database
         use nodebb
-        db.createUser( { user: "nodebb", pwd: "amkamk3", roles: [ { role: "readWrite", db: "nodebb" }, { role: "clusterMonitor", db: "admin" } ] } )
+        db.createUser( { user: "nodebb", pwd: "admin123", roles: [ { role: "readWrite", db: "nodebb" }, { role: "clusterMonitor", db: "admin" } ] } )
         quit()
 
 ### Enable database authorization:
@@ -62,7 +62,7 @@ Link: https://docs.nodebb.org/installing/os/ubuntu/
 ### Restart MongoDB and verify:
 
 - sudo systemctl restart mongod
-- mongo -u admin -p password --authenticationDatabase=admin
+- mongo -u admin -p admin123 --authenticationDatabase=admin
 - exit
 
 ## 5. Installing & Starting NodeBB
